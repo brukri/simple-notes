@@ -31,7 +31,7 @@ const controller = (() => {
     function addNoteToLocalStorage(note) {
         let notes = JSON.parse(localStorage.getItem(SIMPLE_NOTES_STORAGE_KEY));
         notes.push(note)
-        localStorage.setItem(SIMPLE_NOTES_STORAGE_KEY, JSON.stringify(notes));
+        // TODO: Add missing code to update the localStorage
     }
 
     function deleteNoteFromLocalStorage({id}) {
@@ -53,12 +53,12 @@ const controller = (() => {
         const noteId = new Date().getTime().toString();
 
         addNoteToLocalStorage({noteId, title, text});
-        loadNotes();
+        // TODO: Add missing code to rerender the existing notes.
     }
 
     function deleteNote(noteId) {
         deleteNoteFromLocalStorage(noteId);
-        loadNotes();
+        // TODO: Add missing code to rerender the existing notes.
     }
 
     function loadNotes() {
