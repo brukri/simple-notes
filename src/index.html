@@ -1,0 +1,54 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Simple nodes</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="controller.js"></script>
+    <script>
+        window.onload = controller.loadNotes
+    </script>
+</head>
+
+<body>
+    <main>
+        <h1>Simple Notes</h1>
+        <div>
+            <form id="form-note" onsubmit="return false">
+            <div>
+                <label for="input-add-note-title">Title:</label>
+                <input id="input-add-note-title" type="text" required>
+            </div>
+            <div>
+                <label for="textarea-add-note-text">Text: </label>
+                <textarea id="textarea-add-note-text" rows="4" cols="50" required></textarea>
+            </div>
+            <button type="button" onclick="controller.addNote()">Add</button>
+            </form>
+        </div>
+        <hr>
+        <div id="div-existing-notes">
+
+        </div>
+    </main>
+
+    <div id="existing-note-template" class="panel" hidden>
+        <div>
+            <label for="existing-note-title">Title:</label>
+            <span id="existing-note-title"></span>
+        </div>
+        <div>
+            <label for="existing-note-text">Text:</label>
+            <span id="existing-note-text"></span>
+        </div>
+        <button id="existing-note-delete-button" type="button">Delete</button>
+    </div>
+</body>
+
+<script type="text/javascript">
+</script>
+
+</html>
