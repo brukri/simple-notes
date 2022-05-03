@@ -8,4 +8,54 @@
 
 body {
     font-family: Tahoma, Helvetica, Arial sans-serif;
+    background-color: bisque;
+}
+
+.notes-container {
+    border: 1px solid;
+    padding: 6px;
+    margin-top: 12px;
+    width: 1000px;
+}
+
+.notes-container > div {
+    margin: 6px
+}
+
+button {
+    border: none;
+    color: white;
+    padding: 6px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.green-background {
+    background-color: green;
+}
+
+.red-background {
+    background-color: red;
+}
+
+textarea {
+    resize: none;
+}
+
+.add-notes-container div {
+    margin: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.add-notes-container div input,textarea {
+    width: 500px;
+    background-color: antiquewhite;
+}
+
+.add-notes-container div label {
+    width: 50px;
+    vertical-align: center;
 }
