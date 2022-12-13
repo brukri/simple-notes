@@ -10,6 +10,12 @@ const controller = (() => {
 
     function toggleTheme(){
             document.body.classList.toggle("dark-mode");
+            if(document.getElementById("togglebtn").className=="fa-solid fa-moon"){
+                document.getElementById("togglebtn").className ="fa-solid fa-sun";
+              }
+              else{
+                document.getElementById("togglebtn").className = "fa-solid fa-moon";
+              }
     }
 
     function getAndClearTextareaNoteText() {

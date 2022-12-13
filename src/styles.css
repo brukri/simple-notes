@@ -42,6 +42,7 @@ button {
     text-decoration: none;
     display: inline-block;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .green-background {
@@ -70,4 +71,16 @@ textarea {
 .add-notes-container div label {
     width: 50px;
     vertical-align: center;
+}
+i{
+    font-size: 70px;
+    color: var(--primary-color);
+}
+.fa-sun{
+    color: yellow;
+    text-shadow: yellow 0px 0px 35px;
+}
+.fa-solid:hover{
+    transition-duration: 1s;
+    transform:rotate(360deg);
 }
