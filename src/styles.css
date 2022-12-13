@@ -1,14 +1,26 @@
 :root {
     box-sizing: border-box;
+    --primary-color: black;
+    --secondary-color: bisque;
+    --tertiary-color: green;
+    --quaternary-color: red;
+    --quinary-color: antiquewhite;
 }
-
+.dark-mode {
+    --primary-color: white;
+    --secondary-color: black;
+    --tertiary-color: green;
+    --quaternary-color: red;
+    --quinary-color: darkgrey;
+}
 * {
     box-sizing: inherit;
 }
 
 body {
     font-family: Tahoma, Helvetica, Arial sans-serif;
-    background-color: bisque;
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
 }
 
 .notes-container {
@@ -33,11 +45,11 @@ button {
 }
 
 .green-background {
-    background-color: green;
+    background-color: var(--tertiary-color);
 }
 
 .red-background {
-    background-color: red;
+    background-color: var(--quaternary-color);
 }
 
 textarea {
@@ -52,7 +64,7 @@ textarea {
 
 .add-notes-container div input,textarea {
     width: 500px;
-    background-color: antiquewhite;
+    background-color: var(--quinary-color);
 }
 
 .add-notes-container div label {

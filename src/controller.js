@@ -8,6 +8,10 @@ const controller = (() => {
         return value;
     }
 
+    function toggleTheme(){
+            document.body.classList.toggle("dark-mode");
+    }
+
     function getAndClearTextareaNoteText() {
         const element = document.getElementById("textarea-add-note-text")
         const value = element.value;
@@ -76,7 +80,8 @@ const controller = (() => {
     return {
         addNote,
         deleteNote,
-        loadNotes
+        loadNotes,
+        toggleTheme
     }
 
 })();

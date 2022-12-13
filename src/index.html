@@ -10,6 +10,7 @@
     <script src="controller.js"></script>
     <script>
         window.onload = controller.loadNotes
+        window.onload = controller.load
     </script>
 </head>
 
@@ -50,6 +51,7 @@
             <button id="existing-note-delete-button" type="button" class="red-background">Delete</button>
         </div>
     </div>
+    <button onclick="controller.toggleTheme()">Change Theme</button>
 </body>
 
 <script type="text/javascript">
