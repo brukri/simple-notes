@@ -75,10 +75,14 @@ textarea {
 i{
     font-size: 70px;
     color: var(--primary-color);
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
 }
 .fa-sun{
     color: yellow;
     text-shadow: yellow 0px 0px 35px;
+    justify-content: center;
 }
 .fa-solid:hover{
     transition-duration: 1s;
