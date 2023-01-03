@@ -20,12 +20,10 @@
         <div class="add-notes-container">
             <form id="form-note" onsubmit="return false">
                 <div>
-                    <label for="input-add-note-title">Title:</label>
-                    <input id="input-add-note-title" type="text" required>
+                    <input id="input-add-note-title" type="text" placeholder="Your Title" required>
                 </div>
                 <div>
-                    <label for="textarea-add-note-text">Text: </label>
-                    <textarea id="textarea-add-note-text" rows="4" cols="50" required></textarea>
+                    <textarea id="textarea-add-note-text" rows="4" cols="50" placeholder="Your Text" required></textarea>
                 </div>
                 <div>
                     <button type="button" class="green-background" onclick="controller.addNote()">Add</button>
@@ -37,7 +35,7 @@
 
         </div>
     </main>
-
+    
     <div id="existing-note-template" class="notes-container" hidden>
         <div>
             <label for="existing-note-title">Title:</label>
@@ -51,7 +49,12 @@
             <button id="existing-note-delete-button" type="button" class="red-background">Delete</button>
         </div>
     </div>
-        <i onclick="controller.toggleTheme()" id="togglebtn" class="fa-solid fa-moon"></i>
+    <label class="switch">
+        <input type="checkbox" id="dark-check" onclick="controller.toggleTheme()">
+        <span class="slider round"></span>
+        <i class="fa-solid fa-moon"></i>
+        <i class="fa-solid fa-sun"></i>
+      </label>
 </body>
 
 <script type="text/javascript">
