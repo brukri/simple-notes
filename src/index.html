@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Simple notes</title>
-    <link rel="stylesheet" href="styles.css"/>
-    <script src="https://kit.fontawesome.com/2769f0e5d6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css" />
     <script src="controller.js"></script>
     <script>
         window.onload = controller.loadNotes
@@ -51,7 +50,10 @@
             <button id="existing-note-delete-button" type="button" class="red-background">Delete</button>
         </div>
     </div>
-        <i onclick="controller.toggleTheme()" id="togglebtn" class="fa-solid fa-moon"></i>
+    <span onclick="controller.toggleTheme()">
+        <img id="moon-img" style="display:block;" class="fa-solid" src="../assets/moonsolid.svg"></img>
+        <img id="sun-img" style="display:none;" class="fa-solid" src="../assets/sunsolid.svg"></img>
+    </span>
 </body>
 
 <script type="text/javascript">

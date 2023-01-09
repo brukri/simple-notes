@@ -1,90 +1,91 @@
 :root {
-    box-sizing: border-box;
-    --primary-color: black;
-    --secondary-color: bisque;
-    --tertiary-color: green;
-    --quaternary-color: red;
-    --quinary-color: antiquewhite;
+  box-sizing: border-box;
+  --primary-color: black;
+  --secondary-color: bisque;
+  --tertiary-color: green;
+  --quaternary-color: red;
+  --quinary-color: antiquewhite;
 }
+
 .dark-mode {
-    --primary-color: white;
-    --secondary-color: black;
-    --tertiary-color: green;
-    --quaternary-color: red;
-    --quinary-color: darkgrey;
+  --primary-color: white;
+  --secondary-color: black;
+  --tertiary-color: green;
+  --quaternary-color: red;
+  --quinary-color: darkgrey;
 }
+
 * {
-    box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 body {
-    font-family: Tahoma, Helvetica, Arial sans-serif;
-    color: var(--primary-color);
-    background-color: var(--secondary-color);
+  font-family: Tahoma, Helvetica, Arial sans-serif;
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
 }
 
 .notes-container {
-    border: 1px solid;
-    padding: 6px;
-    margin-top: 12px;
-    width: 1000px;
+  border: 1px solid;
+  padding: 6px;
+  margin-top: 12px;
+  width: 1000px;
 }
 
-.notes-container > div {
-    margin: 6px
+.notes-container>div {
+  margin: 6px
 }
 
 button {
-    border: none;
-    color: white;
-    padding: 6px 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-weight: bold;
-    cursor: pointer;
+  border: none;
+  color: white;
+  padding: 6px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .green-background {
-    background-color: var(--tertiary-color);
+  background-color: var(--tertiary-color);
 }
 
 .red-background {
-    background-color: var(--quaternary-color);
+  background-color: var(--quaternary-color);
 }
 
 textarea {
-    resize: none;
+  resize: none;
 }
 
 .add-notes-container div {
-    margin: 12px;
-    display: flex;
-    align-items: center;
+  margin: 12px;
+  display: flex;
+  align-items: center;
 }
 
-.add-notes-container div input,textarea {
-    width: 500px;
-    background-color: var(--quinary-color);
+.add-notes-container div input,
+textarea {
+  width: 500px;
+  background-color: var(--quinary-color);
 }
 
 .add-notes-container div label {
-    width: 50px;
-    vertical-align: center;
+  width: 50px;
+  vertical-align: center;
 }
-i{
-    font-size: 70px;
-    color: var(--primary-color);
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
+
+img {
+  width: 70px;
+  height: 70px;
+  color: var(--primary-color);
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
 }
-.fa-sun{
-    color: yellow;
-    text-shadow: yellow 0px 0px 35px;
-    justify-content: center;
-}
-.fa-solid:hover{
-    transition-duration: 1s;
-    transform:rotate(360deg);
+
+.fa-solid:hover {
+  transition-duration: 1s;
+  transform: rotate(360deg);
 }
