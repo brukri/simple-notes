@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Simple notes</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css"/>
     <script src="controller.js"></script>
     <script>
         window.onload = controller.loadNotes
@@ -19,12 +19,10 @@
         <div class="add-notes-container">
             <form id="form-note" onsubmit="return false">
                 <div>
-                    <label for="input-add-note-title">Title:</label>
-                    <input id="input-add-note-title" type="text" required>
+                    <input id="input-add-note-title" type="text" placeholder="Your Title" required>
                 </div>
                 <div>
-                    <label for="textarea-add-note-text">Text: </label>
-                    <textarea id="textarea-add-note-text" rows="4" cols="50" required></textarea>
+                    <textarea id="textarea-add-note-text" rows="4" cols="50" placeholder="Your Text" required></textarea>
                 </div>
                 <div>
                     <button type="button" class="green-background" onclick="controller.addNote()">Add</button>
@@ -36,7 +34,7 @@
 
         </div>
     </main>
-
+    
     <div id="existing-note-template" class="notes-container" hidden>
         <div>
             <label for="existing-note-title">Title:</label>
@@ -50,6 +48,12 @@
             <button id="existing-note-delete-button" type="button" class="red-background">Delete</button>
         </div>
     </div>
+    <label class="switch">
+        <input type="checkbox" id="dark-check" onclick="controller.toggleTheme()">
+        <span class="slider round"></span>
+        <img src="../assets/moonsolid.svg" class="fa-solid fa-moon"></img>
+        <img src="../assets/sunsolid.svg" class="fa-solid fa-sun"></img>
+      </label>
 </body>
 
 <script type="text/javascript">

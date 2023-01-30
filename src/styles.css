@@ -1,14 +1,26 @@
 :root {
     box-sizing: border-box;
+    --primary-color: black;
+    --secondary-color: bisque;
+    --tertiary-color: green;
+    --quaternary-color: red;
+    --quinary-color: antiquewhite;
 }
-
+.dark-mode {
+    --primary-color: white;
+    --secondary-color: black;
+    --tertiary-color: green;
+    --quaternary-color: red;
+    --quinary-color: darkgrey;
+}
 * {
     box-sizing: inherit;
 }
 
 body {
     font-family: Tahoma, Helvetica, Arial sans-serif;
-    background-color: bisque;
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
 }
 
 .notes-container {
@@ -30,14 +42,15 @@ button {
     text-decoration: none;
     display: inline-block;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .green-background {
-    background-color: green;
+    background-color: var(--tertiary-color);
 }
 
 .red-background {
-    background-color: red;
+    background-color: var(--quaternary-color);
 }
 
 textarea {
@@ -45,17 +58,102 @@ textarea {
 }
 
 .add-notes-container div {
-    margin: 12px;
+    margin: 12px 0px;
     display: flex;
     align-items: center;
 }
 
 .add-notes-container div input,textarea {
     width: 500px;
-    background-color: antiquewhite;
+    background-color: var(--quinary-color);
+    font-family: Tahoma, Helvetica, Arial sans-serif;
 }
 
 .add-notes-container div label {
     width: 50px;
     vertical-align: center;
 }
+/* The switch - the box around the slider */
+.switch {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: grey;
+    -webkit-transition: .4s;
+    transition: .4s;
+    z-index: 2;
+  }
+  
+  input:checked + .slider {
+    background-color: whitesmoke;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px var(--quinary-color);
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  img{
+    position: absolute;
+  }
+  .fa-moon{
+    right: 6px;
+    bottom: 5px;
+    color: white;
+    z-index: 1;
+    width: 23px;
+    height: 23px;
+  }
+  .fa-sun{
+    color: bisque;
+    left: 5px;
+    bottom: 5px;
+    z-index: 0;
+    width: 23px;
+    height: 23px;
+  }
