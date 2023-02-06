@@ -52,6 +52,9 @@ button {
 .red-background {
     background-color: var(--quaternary-color);
 }
+.yellow-background {
+    background-color: yellowgreen;
+}
 
 textarea {
     resize: none;
@@ -156,4 +159,7 @@ textarea {
     z-index: 0;
     width: 23px;
     height: 23px;
+  }
+  button:disabled{
+    opacity: .5;
   }
