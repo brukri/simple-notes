@@ -50,7 +50,6 @@ const controller = (() => {
         let notes = JSON.parse(localStorage.getItem(SIMPLE_NOTES_STORAGE_KEY));
         const foundIndex = notes.findIndex(note => note.noteId === id);
         const foundNote = notes[foundIndex];
-        console.log(foundNote);
         document.getElementById("input-add-note-title").value = foundNote.title;
         document.getElementById("textarea-add-note-text").value = foundNote.text;
         document.getElementById("edit-note-button").style.display = "block";
@@ -72,25 +71,23 @@ const controller = (() => {
         localStorage.setItem(SIMPLE_NOTES_STORAGE_KEY, JSON.stringify(notes));
         document.getElementById("edit-note-button").style.display = "none";
         document.getElementById("add-note-button").disabled = false;
-        loadNotes();
     }
-
+    
     function addNote() {
         const title = getAndClearInputNoteTitle();
         const text = getAndClearTextareaNoteText();
-
+        
         if (!title || !text) {
             return;
         }
-
+        
         const noteId = new Date().getTime().toString();
-
+        
         addNoteToLocalStorage({ noteId, title, text });
         loadNotes();
     }
 
     function deleteNote(noteId) {
-        console.log("deleteNote", noteId)
         deleteNoteFromLocalStorage(noteId);
         loadNotes();
     }
@@ -100,12 +97,13 @@ const controller = (() => {
 
     function updateNote(noteId) {
         updateNoteToLocalStorage(noteId);
+        loadNotes();
     }
-
+    
     function loadNotes() {
         document.getElementById("div-existing-notes").innerHTML = '';
         const notesString = localStorage.getItem(SIMPLE_NOTES_STORAGE_KEY);
-
+        
         if (!notesString) {
             localStorage.setItem(SIMPLE_NOTES_STORAGE_KEY, JSON.stringify([]));
         }
