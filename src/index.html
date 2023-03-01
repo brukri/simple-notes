@@ -8,6 +8,9 @@
     <title>Simple notes</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="controller.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script>
         window.onload = controller.loadNotes
     </script>
@@ -19,15 +22,17 @@
         <div class="add-notes-container">
             <form id="form-note" onsubmit="return false">
                 <div>
-                    <input id="input-add-note-title" type="text" placeholder="Your Title" required>
+                    <input id="input-add-note-title" type="text" placeholder="Note Title" autofocus required>
                 </div>
                 <div>
-                    <textarea id="textarea-add-note-text" rows="4" cols="50" placeholder="Your Text"
+                    <textarea id="textarea-add-note-text" rows="4" cols="50" placeholder="Note Text"
                         required></textarea>
                 </div>
                 <div>
-                    <button id="add-note-button" type="button" class="green-background" onclick="controller.addNote()">Add</button>
-                    <button id="edit-note-button"style="margin-left: 5px; display: none;" type="button" class="green-background" onclick="controller.addNote()">Update</button>
+                    <button id="add-note-button" type="button" class="green-background"
+                        onclick="controller.addNote()">Add</button>
+                    <button id="edit-note-button" style="margin-left: 5px; display: none;" type="button"
+                        class="green-background" onclick="controller.addNote()">Update</button>
                 </div>
             </form>
         </div>
@@ -36,7 +41,7 @@
 
         </div>
     </main>
-    
+
     <div id="existing-note-template" class="notes-container" hidden>
         <div>
             <label for="existing-note-title">Title:</label>
