@@ -80,6 +80,7 @@ const controller = (() => {
         if (!title || !text) {
             return;
         }
+        autoResize();
         
         const noteId = new Date().getTime().toString();
         
@@ -112,13 +113,22 @@ const controller = (() => {
         notes.forEach(createNote);
     }
 
+    function autoResize() {
+        const textarea = document.getElementById("textarea-add-note-text");
+        textarea.style.height = "auto";
+        textarea.style.height = textarea.scrollHeight + "px";
+        console.log("scrollHeight: " + textarea.scrollHeight);
+        console.log("clientHeight: " + textarea.clientHeight);
+      }
+
     return {
         addNote,
         deleteNote,
         loadNotes,
         editNote,
         toggleTheme,
-        updateNote
+        updateNote,
+        autoResize
     }
 
 })();
