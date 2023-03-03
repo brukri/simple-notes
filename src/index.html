@@ -17,8 +17,8 @@
 </head>
 
 <body>
-    <h1>Simple Notes</h1>
     <div class="flex-wrapper">
+    <h1>Simple Notes</h1>
         <div class="add-notes-container shadow-border">
             <form id="form-note" onsubmit="return false">
                 <div>
@@ -34,22 +34,17 @@
         <HR WIDTH="380px" SIZE="3" align="left">
         <div id="div-existing-notes">
         </div>
-
         <div id="existing-note-template" class="notes-container shadow-border" hidden>
                 <span id="existing-note-title"></span>
+            <div class="wrapper-edit-delete">
                 <span id="existing-note-text"></span>
-            <div>
-                <button id="existing-note-delete-button" type="button" class="red-background">Delete</button>
-                <button id="existing-note-edit-button" type="button" class="yellow-background">Edit</button>
+                <div>
+                    <button id="existing-note-delete-button" type="button" class="red-background">Delete</button>
+                    <button id="existing-note-edit-button" type="button" class="yellow-background">Edit</button>
+                </div>
             </div>
         </div>
     </div>
-    <label class="switch">
-        <input type="checkbox" id="dark-check" onclick="controller.toggleTheme()">
-        <span class="slider round"></span>
-        <img src="../assets/moonsolid.svg" class="fa-solid fa-moon"></img>
-        <img src="../assets/sunsolid.svg" class="fa-solid fa-sun"></img>
-    </label>
 </body>
 
 <script type="text/javascript">
