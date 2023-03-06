@@ -26,7 +26,8 @@
                 </div>
                 <div class="add-wrapper">
                     <textarea id="textarea-add-note-text" placeholder="Note Text" required oninput="controller.autoResize()"></textarea>
-                    <button type="button" onclick="controller.addNote()"><img src="/assets/circle-plus-solid.svg" id="add-note-button" alt="plus button"></button>
+                    <button id="add-note-button" type="button" onclick="controller.addNote()"><img src="/assets/circle-plus-solid.svg" id="add-note-img" alt="plus button"></button>
+                    <button id="edit-note-button" type="button" onclick="controller.updateNote()" style="display: none;"><img src="/assets/circle-check-solid.svg" id="edit-note-img" alt="edit button"></button>
                 </div>
             </form>
         </div>

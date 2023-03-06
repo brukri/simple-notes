@@ -54,7 +54,7 @@ const controller = (() => {
         document.getElementById("textarea-add-note-text").value = foundNote.text;
         document.getElementById("edit-note-button").style.display = "block";
         document.getElementById("edit-note-button").setAttribute("onclick", `controller.updateNote('${id}')`);
-        document.getElementById("add-note-button").disabled = true;
+        document.getElementById("add-note-button").style.display = "none";
         }
 
     function updateNoteToLocalStorage(noteId) {
@@ -70,7 +70,8 @@ const controller = (() => {
         notes[foundIndex] = { noteId, title, text };
         localStorage.setItem(SIMPLE_NOTES_STORAGE_KEY, JSON.stringify(notes));
         document.getElementById("edit-note-button").style.display = "none";
-        document.getElementById("add-note-button").disabled = false;
+        document.getElementById("add-note-button").style.display = "block";
+
     }
     
     function addNote() {
@@ -94,11 +95,13 @@ const controller = (() => {
     }
     function editNote(noteId) {
         setInNoteFromLocalStorage(noteId);
+        autoResize();
     }
 
     function updateNote(noteId) {
         updateNoteToLocalStorage(noteId);
         loadNotes();
+        autoResize();
     }
     
     function loadNotes() {

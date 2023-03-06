@@ -25,8 +25,9 @@ body {
 }
 
 h1 {
-  font-size: 92;
+  font-size: 92px;
   font-weight: bold;
+  margin: 5px;
 }
 
 input,
@@ -80,7 +81,7 @@ textarea::placeholder {
   outline: 2px solid var(--tertiary-color);
 }
 
-#add-note-button {
+#add-note-img, #edit-note-img{
   height: 30px;
   width: 30px;
 }
