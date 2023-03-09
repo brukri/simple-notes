@@ -50,7 +50,10 @@ const controller = (() => {
   function deleteNoteFromLocalStorage(id) {
     let notes = JSON.parse(localStorage.getItem(SIMPLE_NOTES_STORAGE_KEY));
     const foundIndex = notes.findIndex((note) => note.noteId === id);
+    console.log("before",notes)
     notes.splice(foundIndex, 1);
+    console.log("deleted Note", id)
+    console.log("after",notes)
     localStorage.setItem(SIMPLE_NOTES_STORAGE_KEY, JSON.stringify(notes));
   }
 
@@ -83,9 +86,18 @@ const controller = (() => {
     document.getElementById("add-note-button").style.display = "block";
   }
 
+  function getFormattedDate() {
+    const date = new Date();
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const year = date.getFullYear().toString();
+    return `${day}.${month}.${year}`;
+  }  
+
   function addNote() {
     const title = getAndClearInputNoteTitle();
     const text = getAndClearTextareaNoteText();
+    const time = getFormattedDate();
 
     if (!title || !text) {
       return;
@@ -94,8 +106,9 @@ const controller = (() => {
 
     const noteId = new Date().getTime().toString();
 
-    addNoteToLocalStorage({ noteId, title, text });
+    addNoteToLocalStorage({ noteId, title, text, time });
     loadNotes();
+    console.log(time);
   }
 
   function deleteNote(noteId) {
@@ -130,6 +143,7 @@ const controller = (() => {
     for (let i = 0; i < notes.length; i++) {
         createNote(notes[i]);
     }
+    console.log("load Notes runned");
   }
 
   function autoResize() {
@@ -148,5 +162,6 @@ const controller = (() => {
     toggleTheme,
     updateNote,
     autoResize,
+    getFormattedDate
   };
 })();
