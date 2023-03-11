@@ -10,6 +10,10 @@ const controller = (() => {
 
   function toggleTheme() {
     document.body.classList.toggle("dark-mode");
+    const imgElements = document.getElementsByTagName("img");
+    for (let i = 0; i < imgElements.length; i++) {
+      imgElements[i].classList.toggle("image-dark-mode");
+    }
   }
 
   function getAndClearTextareaNoteText() {
@@ -50,10 +54,10 @@ const controller = (() => {
   function deleteNoteFromLocalStorage(id) {
     let notes = JSON.parse(localStorage.getItem(SIMPLE_NOTES_STORAGE_KEY));
     const foundIndex = notes.findIndex((note) => note.noteId === id);
-    console.log("before",notes)
+    console.log("before", notes);
     notes.splice(foundIndex, 1);
-    console.log("deleted Note", id)
-    console.log("after",notes)
+    console.log("deleted Note", id);
+    console.log("after", notes);
     localStorage.setItem(SIMPLE_NOTES_STORAGE_KEY, JSON.stringify(notes));
   }
 
@@ -92,7 +96,7 @@ const controller = (() => {
     const month = (date.getMonth() + 1).toString().padStart(2, "0");
     const year = date.getFullYear().toString();
     return `${day}.${month}.${year}`;
-  }  
+  }
 
   function addNote() {
     const title = getAndClearInputNoteTitle();
@@ -128,25 +132,25 @@ const controller = (() => {
 
   function loadNotes() {
     const elements = document.getElementsByClassName("notes-container");
-    const length = elements.length
-    for(let i = length - 1; i > 0; i--){
-        elements[i].remove();
-        console.log("deleted", i)
+    const length = elements.length;
+    for (let i = length - 1; i > 0; i--) {
+      elements[i].remove();
+      console.log("deleted", i);
     }
     const notesString = localStorage.getItem(SIMPLE_NOTES_STORAGE_KEY);
 
     if (!notesString) {
       localStorage.setItem(SIMPLE_NOTES_STORAGE_KEY, JSON.stringify([]));
     }
-    
+
     const notes = JSON.parse(notesString);
-    console.log(notes)
+    console.log(notes);
     if (notes.length == null) {
-      console.log("no Notes in localstorage")
-      return
+      console.log("no Notes in localstorage");
+      return;
     }
     for (let i = 0; i < notes.length; i++) {
-        createNote(notes[i]);
+      createNote(notes[i]);
     }
     console.log("load Notes runned");
   }
@@ -167,6 +171,6 @@ const controller = (() => {
     toggleTheme,
     updateNote,
     autoResize,
-    getFormattedDate
+    getFormattedDate,
   };
 })();

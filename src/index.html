@@ -26,8 +26,12 @@
                 </div>
                 <div class="add-wrapper">
                     <textarea id="textarea-add-note-text" placeholder="Note Text" required oninput="controller.autoResize()"></textarea>
-                    <button id="add-note-button" type="button" onclick="controller.addNote()"><img src="/assets/circle-plus-solid.svg" id="add-note-img" alt="plus button"></button>
-                    <button id="edit-note-button" type="button" onclick="controller.updateNote()" style="display: none;"><img src="/assets/circle-check-solid.svg" id="edit-note-img" alt="edit button"></button>
+                    <button id="add-note-button" type="button" onclick="controller.addNote()">
+                        <img src="/assets/circle-plus-solid.svg" id="add-note-img" alt="plus button">
+                                </button>
+                    <button id="edit-note-button" type="button" onclick="controller.updateNote()" style="display: none;">
+                        <img src="/assets/circle-check-solid.svg" id="edit-note-img" alt="edit button">
+                    </button>
                 </div>
             </form>
         </div>
@@ -49,7 +53,7 @@
     <aside>
         <div class="import-export">
             <div class="export">
-                <img src="/assets/arrow-up-from-bracket-solid.svg" alt="export-icon">
+                <img src="/assets/arrow-up-from-bracket-solid.svg" alt="export-icon" >
                 Export
             </div>
             <div class="import">
@@ -72,6 +76,9 @@
             </div>
         </div>
     </aside>
+    <div>
+        <img src="/assets/moon-solid.svg" alt="" class="dark-mode-button" onclick="controller.toggleTheme()">
+    </div>
 </body>
 <script type="text/javascript">
 </script>
