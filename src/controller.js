@@ -128,9 +128,9 @@ const controller = (() => {
 
   function loadNotes() {
     const elements = document.getElementsByClassName("notes-container");
-    console.log(elements)
-    for(let i = 1; i < elements.length; i++){
-        elements[0].parentNode.removeChild(elements[i]);
+    const length = elements.length
+    for(let i = length - 1; i > 0; i--){
+        elements[i].remove();
         console.log("deleted", i)
     }
     const notesString = localStorage.getItem(SIMPLE_NOTES_STORAGE_KEY);
@@ -138,8 +138,13 @@ const controller = (() => {
     if (!notesString) {
       localStorage.setItem(SIMPLE_NOTES_STORAGE_KEY, JSON.stringify([]));
     }
-
+    
     const notes = JSON.parse(notesString);
+    console.log(notes)
+    if (notes.length == null) {
+      console.log("no Notes in localstorage")
+      return
+    }
     for (let i = 0; i < notes.length; i++) {
         createNote(notes[i]);
     }
