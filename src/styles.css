@@ -22,8 +22,20 @@
   filter: invert(100%);
 }
 
+/* Define scrollbar width and background color */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Define scrollbar thumb color and border radius */
+::-webkit-scrollbar-thumb {
+  background-color: #000;
+  border-radius: 10px;
+}
+
+
 .dark-mode-button{
-  position: absolute;
+  position: fixed;
   right: 20px;
   bottom: 20px;
   width: 40px;
@@ -231,7 +243,7 @@ h1 {
   column-gap: 20px;
 }
 aside {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   padding: 20px;
@@ -248,8 +260,7 @@ aside img {
   padding: 0px 10px 0px 10px;
 }
 
-.import,
-.export {
+.import, .export {
   display: flex;
   align-items: center;
   justify-content: space-around;
