@@ -23,7 +23,7 @@ const controller = (() => {
     return value;
   }
 
-  function createNote({ noteId, title, text }) {
+  function createNote({ noteId, title, text, time }) {
     const existingNotes = document.getElementById("flex-wrapper");
     const existingNoteTemplate = document.getElementById(
       "existing-note-template"
@@ -37,6 +37,8 @@ const controller = (() => {
       title;
     document.querySelector(`#${elementId} #existing-note-text`).innerText =
       text;
+    document.querySelector(`#${elementId} #existing-note-date`).innerText =
+      time;
     document
       .querySelector(`#${elementId} #existing-note-delete-button`)
       .setAttribute("onclick", `controller.deleteNote('${noteId}')`);
@@ -44,7 +46,7 @@ const controller = (() => {
       .querySelector(`#${elementId} #existing-note-edit-button`)
       .setAttribute("onclick", `controller.editNote('${noteId}')`);
   }
-
+2
   function addNoteToLocalStorage(note) {
     let notes = JSON.parse(localStorage.getItem(SIMPLE_NOTES_STORAGE_KEY));
     notes.push(note);
@@ -54,10 +56,7 @@ const controller = (() => {
   function deleteNoteFromLocalStorage(id) {
     let notes = JSON.parse(localStorage.getItem(SIMPLE_NOTES_STORAGE_KEY));
     const foundIndex = notes.findIndex((note) => note.noteId === id);
-    console.log("before", notes);
     notes.splice(foundIndex, 1);
-    console.log("deleted Note", id);
-    console.log("after", notes);
     localStorage.setItem(SIMPLE_NOTES_STORAGE_KEY, JSON.stringify(notes));
   }
 
@@ -112,7 +111,6 @@ const controller = (() => {
 
     addNoteToLocalStorage({ noteId, title, text, time });
     loadNotes();
-    console.log(time);
   }
 
   function deleteNote(noteId) {
@@ -135,7 +133,6 @@ const controller = (() => {
     const length = elements.length;
     for (let i = length - 1; i > 0; i--) {
       elements[i].remove();
-      console.log("deleted", i);
     }
     const notesString = localStorage.getItem(SIMPLE_NOTES_STORAGE_KEY);
 
@@ -144,23 +141,18 @@ const controller = (() => {
     }
 
     const notes = JSON.parse(notesString);
-    console.log(notes);
     if (notes.length == null) {
-      console.log("no Notes in localstorage");
       return;
     }
     for (let i = 0; i < notes.length; i++) {
       createNote(notes[i]);
     }
-    console.log("load Notes runned");
   }
 
   function autoResize() {
     const textarea = document.getElementById("textarea-add-note-text");
     textarea.style.height = "auto";
     textarea.style.height = textarea.scrollHeight + "px";
-    console.log("scrollHeight: " + textarea.scrollHeight);
-    console.log("clientHeight: " + textarea.clientHeight);
   }
 
   return {
