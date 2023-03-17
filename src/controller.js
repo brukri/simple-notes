@@ -46,7 +46,7 @@ const controller = (() => {
       .querySelector(`#${elementId} #existing-note-edit-button`)
       .setAttribute("onclick", `controller.editNote('${noteId}')`);
   }
-2
+
   function addNoteToLocalStorage(note) {
     let notes = JSON.parse(localStorage.getItem(SIMPLE_NOTES_STORAGE_KEY));
     notes.push(note);
