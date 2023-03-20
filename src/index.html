@@ -36,7 +36,7 @@
             </form>
         </div>
         <HR WIDTH="380px" SIZE="3" align="left">
-        <div id="existing-note-template" class="notes-container shadow-border" hidden>
+        <div id="existing-note-template" class="notes-container shadow-border">
             <div class="wrapper-title-date">
                 <span id="existing-note-title"></span>
                 <span id="existing-note-date">20.10.2010</span>
@@ -63,16 +63,14 @@
         </div>
         <div class="table-of-content shadow-border">
             <div id="note-list-wrapper">
-                <div class="list-item">
-                    <span id="existing-note-list-title">Bliblablub</span>
-                    <span id="existing-note-list-date" onclick="controller.loadNotes()" style="cursor:pointer;">00.00.1900</span>
-                </div>
-            </div>
-            <div id="existing-notes-list-template"hidden>
-                <div class="list-item">
+                <div class="list-item" onclick="controller.highlightAndScrollToDiv('existing-node-1679141413577')">
                     <span id="existing-note-list-title">Bliblablub</span>
                     <span id="existing-note-list-date">00.00.1900</span>
                 </div>
+            </div>
+            <div id="existing-notes-list-template" class="list-item">
+                <span id="existing-note-list-title">Bliblablub</span>
+                <span id="existing-note-list-date">00.00.1900</span>
             </div>
         </div>
     </aside>

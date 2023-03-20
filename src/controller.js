@@ -67,9 +67,7 @@ const controller = (() => {
     document.getElementById("input-add-note-title").value = foundNote.title;
     document.getElementById("textarea-add-note-text").value = foundNote.text;
     document.getElementById("edit-note-button").style.display = "block";
-    document
-      .getElementById("edit-note-button")
-      .setAttribute("onclick", `controller.updateNote('${id}')`);
+    document.getElementById("edit-note-button").setAttribute("onclick", `controller.updateNote('${id}')`);
     document.getElementById("add-note-button").style.display = "none";
   }
 
@@ -78,12 +76,13 @@ const controller = (() => {
     const foundIndex = notes.findIndex((note) => note.noteId === noteId);
     const title = getAndClearInputNoteTitle();
     const text = getAndClearTextareaNoteText();
+    const time = getFormattedDate();
 
     if (!title || !text) {
       return;
     }
 
-    notes[foundIndex] = { noteId, title, text };
+    notes[foundIndex] = { noteId, title, text, time};
     localStorage.setItem(SIMPLE_NOTES_STORAGE_KEY, JSON.stringify(notes));
     document.getElementById("edit-note-button").style.display = "none";
     document.getElementById("add-note-button").style.display = "block";
@@ -155,6 +154,25 @@ const controller = (() => {
     textarea.style.height = textarea.scrollHeight + "px";
   }
 
+  function highlightAndScrollToDiv(divId) {
+    const element = document.getElementById(divId);
+    if (element) {
+      const leftOffset = element.offsetLeft - 20;
+      background = element.style.backgroundColor;
+      if (document.body.classList.contains("dark-mode")){
+        element.style.backgroundColor = "#383838";
+      }
+      else {
+        element.style.backgroundColor = "d4d4d4";
+      }
+      window.scroll(leftOffset, 0)
+      setTimeout(function(){
+        element.style.backgroundColor = background;
+      }, 1000);
+    }
+  }
+  
+
   return {
     addNote,
     deleteNote,
@@ -164,5 +182,6 @@ const controller = (() => {
     updateNote,
     autoResize,
     getFormattedDate,
+    highlightAndScrollToDiv
   };
 })();

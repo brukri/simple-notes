@@ -1,3 +1,7 @@
+html{
+  scroll-behavior: smooth;
+}
+
 :root {
   --primary-color: #030303;
   --secondary-color: #ffffff;
@@ -299,6 +303,7 @@ aside img {
   align-items: center;
   padding: 0px 10px 0px 10px;
   box-sizing: border-box;
+  cursor: pointer;
 }
 #note-list-wrapper div:first-child {
   padding-top: 10px;
@@ -306,4 +311,17 @@ aside img {
 
 #note-list-wrapper div:last-child {
   padding-bottom: 10px;
+}
+
+#existing-notes-list-template{
+  display: none;
+}
+
+.highlight{
+  background-color: yellow;
+}
+
+a{
+  margin: 0;
+  padding: 0;
 }
