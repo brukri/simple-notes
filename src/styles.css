@@ -33,11 +33,17 @@ html{
 
 /* Define scrollbar thumb color and border radius */
 ::-webkit-scrollbar-thumb {
-  background-color: #000;
+  background-color: var(--primary-color);
   border-radius: 10px;
 }
 
+::-webkit-scrollbar-track {
+  background: var(--background-color); 
+}
 
+::-webkit-scrollbar-corner {
+  background: var(--background-color);
+}
 .dark-mode-button{
   position: fixed;
   right: 20px;
@@ -154,8 +160,10 @@ hr {
   flex-wrap: wrap;
   gap: 20px;
   margin: 0;
-  padding: 0px 20px 20px 20px;
-  height: calc(100vh - 117px);
+  padding: 2px 20px 20px 20px;
+  width: calc(100% - 203px);
+  overflow-x: scroll;
+  height: calc(100vh - 118px);
   box-sizing: border-box;
 }
 
@@ -253,6 +261,8 @@ aside {
   padding: 20px;
   height: 100%;
   box-sizing: border-box;
+  box-shadow: var(--shadow-color) -2px 0px 10px;
+  background-color: var(--background-color);
 }
 aside img {
   width: 40px;
@@ -282,10 +292,18 @@ aside img {
 #existing-note-list-title {
   font-size: 14px;
   color: var(--primary-color);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 85px;
+}
+
+#existing-note-list-title:hover {
+  text-decoration: underline;
 }
 
 #existing-note-list-date {
-  font-size: 8px;
+  font-size: 10px;
   color: var(--tertiary-color);
 }
 
@@ -324,4 +342,40 @@ aside img {
 a{
   margin: 0;
   padding: 0;
+}
+
+#delete-all-notes-button{
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.delete-confirm{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 50px; 
+  text-decoration: underline;
+}
+
+.delete-confirm>img{
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.hidden{
+  display: none;
 }
