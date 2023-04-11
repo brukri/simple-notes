@@ -8,58 +8,74 @@
     <title>Simple notes</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="controller.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script>
         window.onload = controller.loadNotes
     </script>
 </head>
 
 <body>
-    <main>
-        <h1>Simple Notes</h1>
-        <div class="add-notes-container">
+    <h1>Simple Notes</h1>
+    <div class="flex-wrapper" id="flex-wrapper" >
+        <div class="add-notes-container shadow-border">
             <form id="form-note" onsubmit="return false">
                 <div>
-                    <input id="input-add-note-title" type="text" placeholder="Your Title" required>
+                    <input id="input-add-note-title" type="text" placeholder="Note Title" autofocus required>
                 </div>
-                <div>
-                    <textarea id="textarea-add-note-text" rows="4" cols="50" placeholder="Your Text"
-                        required></textarea>
-                </div>
-                <div>
-                    <button id="add-note-button" type="button" class="green-background" onclick="controller.addNote()">Add</button>
-                    <button id="edit-note-button"style="margin-left: 5px; display: none;" type="button" class="green-background" onclick="controller.addNote()">Update</button>
+                <div class="add-wrapper">
+                    <textarea id="textarea-add-note-text" placeholder="Note Text" required oninput="controller.autoResize()"></textarea>
+                    <button id="add-note-button" type="button" onclick="controller.addNote()">
+                        <img src="/assets/circle-plus-solid.svg" id="add-note-img" alt="plus button">
+                                </button>
+                    <button id="edit-note-button" type="button" onclick="controller.updateNote()" style="display: none;">
+                        <img src="/assets/circle-check-solid.svg" id="edit-note-img" alt="edit button">
+                    </button>
                 </div>
             </form>
         </div>
-        <hr>
-        <div id="div-existing-notes">
-
-        </div>
-    </main>
-    
-    <div id="existing-note-template" class="notes-container" hidden>
-        <div>
-            <label for="existing-note-title">Title:</label>
-            <span id="existing-note-title"></span>
-        </div>
-        <div>
-            <label for="existing-note-text">Text:</label>
-            <span id="existing-note-text"></span>
-        </div>
-        <div>
-            <button id="existing-note-delete-button" type="button" class="red-background">Delete</button>
-            <button id="existing-note-edit-button" type="button" class="yellow-background">Edit</button>
+        <HR WIDTH="380px" SIZE="3" align="left">
+        <div id="existing-note-template" class="notes-container shadow-border">
+            <div class="wrapper-title-date">
+                <span id="existing-note-title"></span>
+                <span id="existing-note-date">20.10.2010</span>
+            </div>
+            <div class="wrapper-text-edit-delete">
+                <span id="existing-note-text"></span>
+                <div class="edit-delete-wrapper">
+                    <button id="existing-note-edit-button" type="button">Edit Note</button>
+                    <button id="existing-note-delete-button" type="button">Delete</button>
+                </div>
+            </div>
         </div>
     </div>
-    <label class="switch">
-        <input type="checkbox" id="dark-check" onclick="controller.toggleTheme()">
-        <span class="slider round"></span>
-        <img src="../assets/moonsolid.svg" class="fa-solid fa-moon"></img>
-        <img src="../assets/sunsolid.svg" class="fa-solid fa-sun"></img>
-    </label>
+    <aside>
+        <div class="import-export">
+            <div class="export">
+                <img src="/assets/arrow-up-from-bracket-solid.svg" alt="export-icon" >
+                Export
+            </div>
+            <div class="import">
+                <img src="/assets/arrow-up-from-bracket-solid.svg" alt="import-icon" style="rotate: 180deg;">
+                Import
+            </div>
+        </div>
+        <div class="table-of-content shadow-border">
+            <div id="note-list-wrapper">
+                <div class="list-item" onclick="controller.highlightAndScrollToDiv('existing-node-1679141413577')">
+                    <span id="existing-note-list-title">Bliblablub</span>
+                    <span id="existing-note-list-date">00.00.1900</span>
+                </div>
+            </div>
+            <div id="existing-notes-list-template" class="list-item">
+                <span id="existing-note-list-title">Bliblablub</span>
+                <span id="existing-note-list-date">00.00.1900</span>
+            </div>
+        </div>
+    </aside>
+    <div>
+        <img src="/assets/moon-solid.svg" alt="" class="dark-mode-button" onclick="controller.toggleTheme()">
+    </div>
 </body>
-
-<script type="text/javascript">
-</script>
-
 </html>
