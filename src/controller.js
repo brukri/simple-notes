@@ -29,7 +29,6 @@ const controller = (() => {
       "existing-note-template"
     );
     const newNode = existingNoteTemplate.cloneNode(true);
-    newNode.removeAttribute("hidden");
     const elementId = `existing-node-${noteId}`;
     newNode.setAttribute("id", elementId);
     existingNotes.appendChild(newNode);
@@ -45,6 +44,20 @@ const controller = (() => {
     document
       .querySelector(`#${elementId} #existing-note-edit-button`)
       .setAttribute("onclick", `controller.editNote('${noteId}')`);
+  }
+
+  function createNoteList({noteId, title, time}) {
+    const existingNotes = document.getElementById("note-list-wrapper");
+    const existingNoteTemplate = document.getElementById("existing-notes-list-template");
+    const newNode = existingNoteTemplate.cloneNode(true);
+    const elementId = `existing-node-list-${noteId}`;
+    newNode.setAttribute("id", elementId);
+    existingNotes.appendChild(newNode);
+    document.querySelector(`#${elementId} #existing-note-list-title`).innerText =
+      title;
+    document.querySelector(`#${elementId} #existing-note-list-date`).innerText =
+      time;
+    document.querySelector(`#${elementId}`).setAttribute("onclick", `controller.highlightAndScrollToDiv('existing-node-${noteId}')`);
   }
 
   function addNoteToLocalStorage(note) {
@@ -133,6 +146,7 @@ const controller = (() => {
     for (let i = length - 1; i > 0; i--) {
       elements[i].remove();
     }
+    document.getElementById('note-list-wrapper').innerHTML = '';
     const notesString = localStorage.getItem(SIMPLE_NOTES_STORAGE_KEY);
 
     if (!notesString) {
@@ -145,6 +159,7 @@ const controller = (() => {
     }
     for (let i = 0; i < notes.length; i++) {
       createNote(notes[i]);
+      createNoteList(notes[i]);
     }
   }
 
@@ -172,6 +187,23 @@ const controller = (() => {
     }
   }
   
+  function deleteAll() {
+    document.getElementById("delete-confirm").classList.remove("hidden");
+    document.getElementById("delete-confirm").classList.add("delete-confirm");
+    loadNotes();
+  }
+
+  function deleteAllConfirm() {
+    document.getElementById("delete-confirm").classList.add("hidden");
+    document.getElementById("delete-confirm").classList.remove("delete-confirm");
+    window.localStorage.clear();
+    loadNotes();
+  }
+
+  function deleteAllCancel() {
+    document.getElementById("delete-confirm").classList.add("hidden");
+    document.getElementById("delete-confirm").classList.remove("delete-confirm");
+  }
 
   return {
     addNote,
@@ -182,6 +214,9 @@ const controller = (() => {
     updateNote,
     autoResize,
     getFormattedDate,
-    highlightAndScrollToDiv
+    highlightAndScrollToDiv,
+    deleteAll,
+    deleteAllConfirm,
+    deleteAllCancel
   };
 })();
