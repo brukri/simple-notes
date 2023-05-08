@@ -1,6 +1,5 @@
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,77 +7,135 @@
     <title>Simple notes</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="controller.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <script>
-        window.onload = controller.loadNotes
+      window.onload = controller.loadNotes;
     </script>
-</head>
+  </head>
 
-<body>
+  <body>
     <h1>Simple Notes</h1>
-    <div class="flex-wrapper" id="flex-wrapper" >
-        <div class="add-notes-container shadow-border">
-            <form id="form-note" onsubmit="return false">
-                <div>
-                    <input id="input-add-note-title" type="text" placeholder="Note Title" autofocus required>
-                </div>
-                <div class="add-wrapper">
-                    <textarea id="textarea-add-note-text" placeholder="Note Text" required oninput="controller.autoResize()"></textarea>
-                    <button id="add-note-button" type="button" onclick="controller.addNote()">
-                        <img src="/assets/circle-plus-solid.svg" id="add-note-img" alt="plus button">
-                                </button>
-                    <button id="edit-note-button" type="button" onclick="controller.updateNote()" style="display: none;">
-                        <img src="/assets/circle-check-solid.svg" id="edit-note-img" alt="edit button">
-                    </button>
-                </div>
-            </form>
+    <div class="flex-wrapper" id="flex-wrapper">
+      <div class="add-notes-container shadow-border">
+        <form id="form-note" onsubmit="return false">
+          <div>
+            <input
+              id="input-add-note-title"
+              type="text"
+              placeholder="Note Title"
+              autofocus
+              required
+            />
+          </div>
+          <div class="add-wrapper">
+            <textarea
+              id="textarea-add-note-text"
+              placeholder="Note Text"
+              required
+              oninput="controller.autoResize()"
+            ></textarea>
+            <button
+              id="add-note-button"
+              type="button"
+              onclick="controller.addNote()"
+            >
+              <img
+                src="/assets/circle-plus-solid.svg"
+                id="add-note-img"
+                alt="plus button"
+              />
+            </button>
+            <button
+              id="edit-note-button"
+              type="button"
+              onclick="controller.updateNote()"
+              style="display: none"
+            >
+              <img
+                src="/assets/circle-check-solid.svg"
+                id="edit-note-img"
+                alt="edit button"
+              />
+            </button>
+          </div>
+        </form>
+      </div>
+      <hr class="divider" />
+      <div id="existing-note-template" class="notes-container shadow-border">
+        <div class="wrapper-title-date">
+          <span id="existing-note-title"></span>
+          <span id="existing-note-date">20.10.2010</span>
         </div>
-        <HR WIDTH="380px" SIZE="3" align="left">
-        <div id="existing-note-template" class="notes-container shadow-border">
-            <div class="wrapper-title-date">
-                <span id="existing-note-title"></span>
-                <span id="existing-note-date">20.10.2010</span>
-            </div>
-            <div class="wrapper-text-edit-delete">
-                <span id="existing-note-text"></span>
-                <div class="edit-delete-wrapper">
-                    <button id="existing-note-edit-button" type="button">Edit Note</button>
-                    <button id="existing-note-delete-button" type="button">Delete</button>
-                </div>
-            </div>
+        <div class="wrapper-text-edit-delete">
+          <span id="existing-note-text"></span>
+          <div class="edit-delete-wrapper">
+            <button id="existing-note-edit-button" type="button">
+              Edit Note
+            </button>
+            <button id="existing-note-delete-button" type="button">
+              Delete
+            </button>
+          </div>
         </div>
+      </div>
     </div>
     <aside>
-        <div class="import-export">
-            <div class="export">
-                <img src="/assets/arrow-up-from-bracket-solid.svg" alt="export-icon" >
-                Export
-            </div>
-            <div class="import">
-                <img src="/assets/arrow-up-from-bracket-solid.svg" alt="import-icon" style="rotate: 180deg;">
-                Import
-            </div>
+      <div class="import-export">
+        <div class="export">
+          <img
+            src="/assets/arrow-up-from-bracket-solid.svg"
+            alt="export-icon"
+          />
+          Export
         </div>
-        <div class="table-of-content shadow-border">
-            <div id="note-list-wrapper">
-            </div>
-            <div id="existing-notes-list-template" class="list-item">
-                <span id="existing-note-list-title">Bliblablub</span>
-                <span id="existing-note-list-date">00.00.1900</span>
-            </div>
+        <div class="import">
+          <img
+            src="/assets/arrow-up-from-bracket-solid.svg"
+            alt="import-icon"
+            style="rotate: 180deg"
+          />
+          Import
         </div>
+      </div>
+      <div class="table-of-content shadow-border">
+        <div id="note-list-wrapper"></div>
+        <div id="existing-notes-list-template" class="list-item">
+          <span id="existing-note-list-title">Bliblablub</span>
+          <span id="existing-note-list-date">00.00.1900</span>
+        </div>
+      </div>
     </aside>
     <div>
-        <img src="/assets/moon-solid.svg" alt="" class="dark-mode-button" onclick="controller.toggleTheme()">
+      <img
+        src="/assets/moon-solid.svg"
+        alt=""
+        class="dark-mode-button"
+        onclick="controller.toggleTheme()"
+      />
     </div>
     <div>
-        <img id="delete-all-notes-button" src="/assets/trash-solid.svg" alt="Trash Icon/Delete all Notes" onclick="controller.deleteAll()">
+      <img
+        id="delete-all-notes-button"
+        src="/assets/trash-solid.svg"
+        alt="Trash Icon/Delete all Notes"
+        onclick="controller.deleteAll()"
+      />
     </div>
     <div id="delete-confirm" class="hidden">
-        <div onclick="controller.deleteAllConfirm()" style="cursor:pointer;">Delete all Notes</div>
-        <img src="/assets/xmark-solid.svg" alt="Xmark to not delete all Notes" onclick="controller.deleteAllCancel()" style="cursor: pointer;">
+      <div onclick="controller.deleteAllConfirm()" style="cursor: pointer">
+        Delete all Notes
+      </div>
+      <img
+        src="/assets/xmark-solid.svg"
+        alt="Xmark to not delete all Notes"
+        onclick="controller.deleteAllCancel()"
+        style="cursor: pointer"
+      />
     </div>
-</body>
+  </body>
 </html>
