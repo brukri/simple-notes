@@ -46,18 +46,26 @@ const controller = (() => {
       .setAttribute("onclick", `controller.editNote('${noteId}')`);
   }
 
-  function createNoteList({noteId, title, time}) {
+  function createNoteList({ noteId, title, time }) {
     const existingNotes = document.getElementById("note-list-wrapper");
-    const existingNoteTemplate = document.getElementById("existing-notes-list-template");
+    const existingNoteTemplate = document.getElementById(
+      "existing-notes-list-template"
+    );
     const newNode = existingNoteTemplate.cloneNode(true);
     const elementId = `existing-node-list-${noteId}`;
     newNode.setAttribute("id", elementId);
     existingNotes.appendChild(newNode);
-    document.querySelector(`#${elementId} #existing-note-list-title`).innerText =
-      title;
+    document.querySelector(
+      `#${elementId} #existing-note-list-title`
+    ).innerText = title;
     document.querySelector(`#${elementId} #existing-note-list-date`).innerText =
       time;
-    document.querySelector(`#${elementId}`).setAttribute("onclick", `controller.highlightAndScrollToDiv('existing-node-${noteId}')`);
+    document
+      .querySelector(`#${elementId}`)
+      .setAttribute(
+        "onclick",
+        `controller.highlightAndScrollToDiv('existing-node-${noteId}')`
+      );
   }
 
   function addNoteToLocalStorage(note) {
@@ -80,7 +88,9 @@ const controller = (() => {
     document.getElementById("input-add-note-title").value = foundNote.title;
     document.getElementById("textarea-add-note-text").value = foundNote.text;
     document.getElementById("edit-note-button").style.display = "block";
-    document.getElementById("edit-note-button").setAttribute("onclick", `controller.updateNote('${id}')`);
+    document
+      .getElementById("edit-note-button")
+      .setAttribute("onclick", `controller.updateNote('${id}')`);
     document.getElementById("add-note-button").style.display = "none";
   }
 
@@ -146,7 +156,7 @@ const controller = (() => {
     for (let i = length - 1; i > 0; i--) {
       elements[i].remove();
     }
-    document.getElementById('note-list-wrapper').innerHTML = '';
+    document.getElementById("note-list-wrapper").innerHTML = "";
     const notesString = localStorage.getItem(SIMPLE_NOTES_STORAGE_KEY);
 
     if (!notesString) {
@@ -174,14 +184,13 @@ const controller = (() => {
     if (element) {
       const leftOffset = element.offsetLeft - 20;
       background = element.style.backgroundColor;
-      if (document.body.classList.contains("dark-mode")){
+      if (document.body.classList.contains("dark-mode")) {
         element.style.backgroundColor = "#383838";
-      }
-      else {
+      } else {
         element.style.backgroundColor = "d4d4d4";
       }
-      window.scroll(leftOffset, 0)
-      setTimeout(function(){
+      window.scroll(leftOffset, 0);
+      setTimeout(function () {
         element.style.backgroundColor = background;
       }, 1000);
     }
@@ -195,7 +204,9 @@ const controller = (() => {
 
   function deleteAllConfirm() {
     document.getElementById("delete-confirm").classList.add("hidden");
-    document.getElementById("delete-confirm").classList.remove("delete-confirm");
+    document
+      .getElementById("delete-confirm")
+      .classList.remove("delete-confirm");
     window.localStorage.clear();
     loadNotes();
   }
