@@ -94,7 +94,7 @@
           />
           Export
         </div>
-        <div class="import">
+        <div class="import" onclick="controller.showModal()">
           <img
             src="/assets/arrow-up-from-bracket-solid.svg"
             alt="import-icon"
@@ -102,6 +102,15 @@
           />
           Import
         </div>
+        <input
+          type="file"
+          accept=".json"
+          name="importFile"
+          id="importFile"
+          onClick="controller.showModal()"
+          onchange="controller.importJSON()"
+          style="display: none"
+        />
       </div>
       <div class="table-of-content shadow-border">
         <div id="note-list-wrapper"></div>

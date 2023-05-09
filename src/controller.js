@@ -233,6 +233,64 @@ const controller = (() => {
     URL.revokeObjectURL(url);
   }
 
+  function showModal() {
+    document.getElementById("importFile").click();
+  }
+
+  function importJSON() {
+    const [file] = document.querySelector("input[type=file]").files;
+    const reader = new FileReader();
+
+    reader.addEventListener(
+      "load",
+      () => {
+        let existingNotes = JSON.parse(
+          localStorage.getItem(SIMPLE_NOTES_STORAGE_KEY)
+        );
+        let importedNotes = JSON.parse(reader.result);
+        console.log(importedNotes);
+        for (let i = 0; i < importedNotes.length; i++) {
+          let note = importedNotes[i];
+          console.log("NoteId:", note.noteId);
+          let dupNotesIdx = existingNotes.findIndex(
+            (s) => s.noteId === note.noteId
+          );
+          console.log("Dupplicate Notes Index:", dupNotesIdx);
+          if (dupNotesIdx >= 0) {
+            // replace if newer
+            if (existingNotes[dupNotesIdx].lastUpdated < note.lastUpdated) {
+              existingNotes[dupNotesIdx] = note;
+              console.log(
+                existingNotes[dupNotesIdx],
+                "should have been overwriten"
+              );
+            } else {
+              console.log(
+                "Note",
+                note.title,
+                "skipped, cause not duplicate but not newer."
+              );
+            }
+          } else {
+            // no duplicat notes, let's add it
+            existingNotes.push(note);
+          }
+        }
+
+        localStorage.setItem(
+          SIMPLE_NOTES_STORAGE_KEY,
+          JSON.stringify(existingNotes)
+        );
+        location.reload();
+      },
+      false
+    );
+
+    if (file) {
+      reader.readAsText(file);
+    }
+  }
+
   return {
     addNote,
     deleteNote,
@@ -245,6 +303,9 @@ const controller = (() => {
     highlightAndScrollToDiv,
     deleteAll,
     deleteAllConfirm,
-    deleteAllCancel
+    deleteAllCancel,
+    exportJSON,
+    showModal,
+    importJSON,
   };
 })();
