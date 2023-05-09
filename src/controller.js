@@ -100,12 +100,13 @@ const controller = (() => {
     const title = getAndClearInputNoteTitle();
     const text = getAndClearTextareaNoteText();
     const time = getFormattedDate();
+    const lastUpdated = new Date().getTime().toString();
 
     if (!title || !text) {
       return;
     }
 
-    notes[foundIndex] = { noteId, title, text, time};
+    notes[foundIndex] = { noteId, title, text, time, lastUpdated };
     localStorage.setItem(SIMPLE_NOTES_STORAGE_KEY, JSON.stringify(notes));
     document.getElementById("edit-note-button").style.display = "none";
     document.getElementById("add-note-button").style.display = "block";
@@ -130,8 +131,9 @@ const controller = (() => {
     autoResize();
 
     const noteId = new Date().getTime().toString();
+    const lastUpdated = new Date().getTime().toString();
 
-    addNoteToLocalStorage({ noteId, title, text, time });
+    addNoteToLocalStorage({ noteId, title, text, time, lastUpdated });
     loadNotes();
   }
 
@@ -213,7 +215,22 @@ const controller = (() => {
 
   function deleteAllCancel() {
     document.getElementById("delete-confirm").classList.add("hidden");
-    document.getElementById("delete-confirm").classList.remove("delete-confirm");
+    document
+      .getElementById("delete-confirm")
+      .classList.remove("delete-confirm");
+  }
+
+  function exportJSON() {
+    let notes = JSON.parse(localStorage.getItem(SIMPLE_NOTES_STORAGE_KEY));
+    let str = JSON.stringify(notes);
+
+    const blob = new Blob([str], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "export.json";
+    a.click();
+    URL.revokeObjectURL(url);
   }
 
   return {
