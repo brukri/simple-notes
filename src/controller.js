@@ -282,28 +282,16 @@ const controller = (() => {
           localStorage.getItem(SIMPLE_NOTES_STORAGE_KEY)
         );
         let importedNotes = JSON.parse(reader.result);
-        console.log(importedNotes);
         for (let i = 0; i < importedNotes.length; i++) {
           let note = importedNotes[i];
-          console.log("NoteId:", note.noteId);
           let dupNotesIdx = existingNotes.findIndex(
             (s) => s.noteId === note.noteId
           );
-          console.log("Duplicate Notes Index:", dupNotesIdx);
           if (dupNotesIdx >= 0) {
             // replace if newer
             if (existingNotes[dupNotesIdx].lastUpdated < note.lastUpdated) {
               existingNotes[dupNotesIdx] = note;
-              console.log(
-                existingNotes[dupNotesIdx],
-                "should have been overwriten"
-              );
             } else {
-              console.log(
-                "Note",
-                note.title,
-                "skipped, cause not duplicate but not newer."
-              );
             }
           } else {
             // no duplicat notes, let's add it
@@ -328,7 +316,6 @@ const controller = (() => {
   function exportFile() {
     toggleExportSelect("exportSelect");
     value = document.getElementById("exportFile").value;
-    console.log(value);
     if (value === "JSON") {
       exportJSON();
     } else {
