@@ -90,11 +90,11 @@
           <img
             src="/assets/arrow-up-from-bracket-solid.svg"
             alt="export-icon"
-            onclick="controller.exportJSON()"
+            onclick="controller.toggleExportSelect('exportSelect')"
           />
           Export
         </div>
-        <div class="import" onclick="controller.showModal()">
+        <div class="import" onclick="controller.showModal('importFile')">
           <img
             src="/assets/arrow-up-from-bracket-solid.svg"
             alt="import-icon"
@@ -107,10 +107,23 @@
           accept=".json"
           name="importFile"
           id="importFile"
-          onClick="controller.showModal()"
+          onClick="controller.showModal('importFile')"
           onchange="controller.importJSON()"
           style="display: none"
         />
+      </div>
+      <div id="exportSelect" style="display: none">
+        <select
+          title="exportFile"
+          name="exportFile"
+          id="exportFile"
+          onchange="controller.exportFile()"
+        >
+          <option disabled selected value="">Please select</option>
+          <option value="JSON">Export JSON</option>
+          <option value="CSV">Export CSV</option>
+        </select>
+        <input type="submit" value="Export" onclick="controller.exportFile()" />
       </div>
       <div class="table-of-content shadow-border">
         <div id="note-list-wrapper"></div>

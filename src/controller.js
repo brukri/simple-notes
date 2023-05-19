@@ -197,7 +197,7 @@ const controller = (() => {
       }, 1000);
     }
   }
-  
+
   function deleteAll() {
     document.getElementById("delete-confirm").classList.remove("hidden");
     document.getElementById("delete-confirm").classList.add("delete-confirm");
@@ -228,13 +228,47 @@ const controller = (() => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "export.json";
+    a.download = "SimpleNotesExport.json";
     a.click();
     URL.revokeObjectURL(url);
   }
 
-  function showModal() {
-    document.getElementById("importFile").click();
+  function exportCSV() {
+    var notes = JSON.parse(localStorage.getItem(SIMPLE_NOTES_STORAGE_KEY));
+    var fields = Object.keys(notes[0]);
+    var replacer = function (key, value) {
+      return value === null ? "" : value;
+    };
+    var csv = notes.map(function (note) {
+      return fields
+        .map(function (fieldName) {
+          return JSON.stringify(note[fieldName], replacer);
+        })
+        .join(",");
+    });
+    csv.unshift(fields.join(",")); // add header column
+    csv = csv.join("\r\n");
+
+    const blob = new Blob([csv], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "SimpleNotesExport.csv";
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function showModal(id) {
+    document.getElementById(id).click();
+  }
+
+  function toggleExportSelect(id) {
+    ele = document.getElementById(id);
+    if (ele.style.display === "none") {
+      ele.style.display = "block";
+    } else {
+      ele.style.display = "none";
+    }
   }
 
   function importJSON() {
@@ -255,7 +289,7 @@ const controller = (() => {
           let dupNotesIdx = existingNotes.findIndex(
             (s) => s.noteId === note.noteId
           );
-          console.log("Dupplicate Notes Index:", dupNotesIdx);
+          console.log("Duplicate Notes Index:", dupNotesIdx);
           if (dupNotesIdx >= 0) {
             // replace if newer
             if (existingNotes[dupNotesIdx].lastUpdated < note.lastUpdated) {
@@ -291,6 +325,17 @@ const controller = (() => {
     }
   }
 
+  function exportFile() {
+    toggleExportSelect("exportSelect");
+    value = document.getElementById("exportFile").value;
+    console.log(value);
+    if (value === "JSON") {
+      exportJSON();
+    } else {
+      exportCSV();
+    }
+  }
+
   return {
     addNote,
     deleteNote,
@@ -306,6 +351,9 @@ const controller = (() => {
     deleteAllCancel,
     exportJSON,
     showModal,
+    toggleExportSelect,
     importJSON,
+    exportCSV,
+    exportFile,
   };
 })();
