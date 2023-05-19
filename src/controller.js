@@ -1,4 +1,4 @@
-const SIMPLE_NOTES_STORAGE_KEY = "simpleNodes";
+const SIMPLE_NOTES_STORAGE_KEY = "simpleNotes";
 
 const controller = (() => {
   function getAndClearInputNoteTitle() {
@@ -28,10 +28,10 @@ const controller = (() => {
     const existingNoteTemplate = document.getElementById(
       "existing-note-template"
     );
-    const newNode = existingNoteTemplate.cloneNode(true);
-    const elementId = `existing-node-${noteId}`;
-    newNode.setAttribute("id", elementId);
-    existingNotes.appendChild(newNode);
+    const newNote = existingNoteTemplate.cloneNode(true);
+    const elementId = `existing-note-${noteId}`;
+    newNote.setAttribute("id", elementId);
+    existingNotes.appendChild(newNote);
     document.querySelector(`#${elementId} #existing-note-title`).innerText =
       title;
     document.querySelector(`#${elementId} #existing-note-text`).innerText =
@@ -51,10 +51,10 @@ const controller = (() => {
     const existingNoteTemplate = document.getElementById(
       "existing-notes-list-template"
     );
-    const newNode = existingNoteTemplate.cloneNode(true);
-    const elementId = `existing-node-list-${noteId}`;
-    newNode.setAttribute("id", elementId);
-    existingNotes.appendChild(newNode);
+    const newNote = existingNoteTemplate.cloneNode(true);
+    const elementId = `existing-note-list-${noteId}`;
+    newNote.setAttribute("id", elementId);
+    existingNotes.appendChild(newNote);
     document.querySelector(
       `#${elementId} #existing-note-list-title`
     ).innerText = title;
@@ -64,7 +64,7 @@ const controller = (() => {
       .querySelector(`#${elementId}`)
       .setAttribute(
         "onclick",
-        `controller.highlightAndScrollToDiv('existing-node-${noteId}')`
+        `controller.highlightAndScrollToDiv('existing-note-${noteId}')`
       );
   }
 
