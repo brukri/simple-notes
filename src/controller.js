@@ -294,7 +294,7 @@ const controller = (() => {
             } else {
             }
           } else {
-            // no duplicat notes, let's add it
+            // no duplicate notes, let's add it
             existingNotes.push(note);
           }
         }
