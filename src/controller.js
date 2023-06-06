@@ -339,30 +339,10 @@ const controller = (() => {
     reader.addEventListener(
       "load",
       () => {
-        let existingNotes = JSON.parse(
-          localStorage.getItem(SIMPLE_NOTES_STORAGE_KEY)
-          );
         let importedNotes = JSON.parse(reader.result);
-        for (let i = 0; i < importedNotes.length; i++) {
-          let note = importedNotes[i];
-          let dupNotesIdx = existingNotes.findIndex(
-            (s) => s.noteId === note.noteId
-          );
-          if (dupNotesIdx >= 0) {
-            // replace if newer
-            if (existingNotes[dupNotesIdx].lastUpdated < note.lastUpdated) {
-              existingNotes[dupNotesIdx] = note;
-            } else {
-            }
-          } else {
-            // no duplicate notes, let's add it
-            existingNotes.push(note);
-          }
-        }
-
         localStorage.setItem(
           SIMPLE_NOTES_STORAGE_KEY,
-          JSON.stringify(existingNotes)
+          JSON.stringify(importedNotes)
           );
         location.reload();
       },
