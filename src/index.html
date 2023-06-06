@@ -104,11 +104,11 @@
         </div>
         <input
           type="file"
-          accept=".json"
+          accept=".json, .csv"
           name="importFile"
           id="importFile"
           onClick="controller.showModal('importFile')"
-          onchange="controller.importJSON()"
+          onchange="controller.importFile()"
           style="display: none"
         />
       </div>

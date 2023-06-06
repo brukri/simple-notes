@@ -197,7 +197,7 @@ const controller = (() => {
       }, 1000);
     }
   }
-
+  
   function deleteAll() {
     document.getElementById("delete-confirm").classList.remove("hidden");
     document.getElementById("delete-confirm").classList.add("delete-confirm");
@@ -219,6 +219,41 @@ const controller = (() => {
       .getElementById("delete-confirm")
       .classList.remove("delete-confirm");
   }
+  
+  function exportFile() {
+    toggleExportSelect("exportSelect");
+    value = document.getElementById("exportFile").value;
+    if (value === "JSON") {
+      exportJSON();
+    } else {
+      exportCSV();
+    }
+  }
+
+  function exportCSV() {
+    var notes = JSON.parse(localStorage.getItem(SIMPLE_NOTES_STORAGE_KEY));
+    var fields = Object.keys(notes[0]);
+    var replacer = function (key, value) {
+      return value === null ? "" : value;
+    };
+    var csv = notes.map(function (note) {
+      return fields
+      .map(function (fieldName) {
+        return JSON.stringify(note[fieldName], replacer).replaceAll('"', "");
+      })
+      .join(",");
+    });
+    csv.unshift(fields.join(",")); // add header column
+    csv = csv.join("\r\n");
+    
+    const blob = new Blob([csv], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "SimpleNotesExport.csv";
+    a.click();
+    URL.revokeObjectURL(url);
+  }
 
   function exportJSON() {
     let notes = JSON.parse(localStorage.getItem(SIMPLE_NOTES_STORAGE_KEY));
@@ -232,42 +267,68 @@ const controller = (() => {
     a.click();
     URL.revokeObjectURL(url);
   }
+  
+  
+  function importFile() {
+    var fileInput = document.querySelector("input[type=file]");
+    var file = fileInput.files[0];
+    var reader = new FileReader();
 
-  function exportCSV() {
-    var notes = JSON.parse(localStorage.getItem(SIMPLE_NOTES_STORAGE_KEY));
-    var fields = Object.keys(notes[0]);
-    var replacer = function (key, value) {
-      return value === null ? "" : value;
+    reader.onload = function (event) {
+      var dataURL = event.target.result;
     };
-    var csv = notes.map(function (note) {
-      return fields
-        .map(function (fieldName) {
-          return JSON.stringify(note[fieldName], replacer);
-        })
-        .join(",");
-    });
-    csv.unshift(fields.join(",")); // add header column
-    csv = csv.join("\r\n");
 
-    const blob = new Blob([csv], { type: "text/plain" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "SimpleNotesExport.csv";
-    a.click();
-    URL.revokeObjectURL(url);
-  }
-
-  function showModal(id) {
-    document.getElementById(id).click();
-  }
-
-  function toggleExportSelect(id) {
-    ele = document.getElementById(id);
-    if (ele.style.display === "none") {
-      ele.style.display = "block";
+    reader.readAsDataURL(file);
+    var name = file.name;
+    console.log(name);
+    if (name.search(/\.csv+$/i) !== -1) {
+      console.log("csvFile");
+      importCSV();
+    } else if (name.search(/\.json+$/i) !== -1) {
+      console.log("jsonFile");
+      importJSON();
     } else {
-      ele.style.display = "none";
+      alert("FileType not supported");
+    }
+  }
+
+  function importCSV() {
+    const [file] = document.querySelector("input[type=file]").files;
+    const reader = new FileReader();
+    reader.addEventListener(
+      "load",
+      () => {
+        csv = reader.result;
+
+        let lines = csv.split("\n");
+
+        let result = [];
+
+        let headers = lines[0].split(",");
+
+        for (let i = 1; i < lines.length; i++) {
+          let obj = {};
+          let currentLine = lines[i].split(",");
+
+          for (let j = 0; j < headers.length; j++) {
+            obj[headers[j]] = currentLine[j];
+          }
+
+          result.push(obj);
+        }
+
+        //return result; //JavaScript object
+        localStorage.setItem(
+          SIMPLE_NOTES_STORAGE_KEY,
+          JSON.stringify(result)
+        );
+        location.reload();
+      },
+      false
+    );
+    
+    if (file) {
+      csv = reader.readAsText(file);
     }
   }
 
@@ -280,7 +341,7 @@ const controller = (() => {
       () => {
         let existingNotes = JSON.parse(
           localStorage.getItem(SIMPLE_NOTES_STORAGE_KEY)
-        );
+          );
         let importedNotes = JSON.parse(reader.result);
         for (let i = 0; i < importedNotes.length; i++) {
           let note = importedNotes[i];
@@ -302,7 +363,7 @@ const controller = (() => {
         localStorage.setItem(
           SIMPLE_NOTES_STORAGE_KEY,
           JSON.stringify(existingNotes)
-        );
+          );
         location.reload();
       },
       false
@@ -312,17 +373,20 @@ const controller = (() => {
       reader.readAsText(file);
     }
   }
-
-  function exportFile() {
-    toggleExportSelect("exportSelect");
-    value = document.getElementById("exportFile").value;
-    if (value === "JSON") {
-      exportJSON();
+  
+  function showModal(id) {
+    document.getElementById(id).click();
+  }
+  
+  function toggleExportSelect(id) {
+    ele = document.getElementById(id);
+    if (ele.style.display === "none") {
+      ele.style.display = "block";
     } else {
-      exportCSV();
+      ele.style.display = "none";
     }
   }
-
+  
   return {
     addNote,
     deleteNote,
@@ -336,11 +400,13 @@ const controller = (() => {
     deleteAll,
     deleteAllConfirm,
     deleteAllCancel,
+    exportFile,
+    exportCSV,
     exportJSON,
+    importFile,
+    importCSV,
+    importJSON,
     showModal,
     toggleExportSelect,
-    importJSON,
-    exportCSV,
-    exportFile,
   };
 })();
