@@ -28,9 +28,9 @@ const controller = (() => {
     const existingNoteTemplate = document.getElementById(
       "existing-note-template"
     );
-    const newNote = existingNoteTemplate.cloneNode(true);
+    const newNode = existingNoteTemplate.cloneNode(true);
     const elementId = `existing-note-${noteId}`;
-    newNote.setAttribute("id", elementId);
+    newNode.setAttribute("id", elementId);
     existingNotes.appendChild(newNote);
     document.querySelector(`#${elementId} #existing-note-title`).innerText =
       title;
