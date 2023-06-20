@@ -280,12 +280,9 @@ const controller = (() => {
 
     reader.readAsDataURL(file);
     const name = file.name;
-    console.log(name);
     if (name.search(/\.csv+$/i) !== -1) {
-      console.log("csvFile");
       importCSV();
     } else if (name.search(/\.json+$/i) !== -1) {
-      console.log("jsonFile");
       importJSON();
     } else {
       alert("FileType not supported");
