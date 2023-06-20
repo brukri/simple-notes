@@ -90,7 +90,7 @@
           <img
             src="/assets/arrow-up-from-bracket-solid.svg"
             alt="export-icon"
-            onclick="controller.exportFile()"
+            onclick="controller.toggleExportSelect('exportSelect')"
           />
           Export
         </div>
@@ -117,7 +117,7 @@
           title="exportFile"
           name="exportFile"
           id="exportFile"
-          onchange="controller.askExportFile()"
+          onchange="controller.exportFile()"
         >
           <option disabled selected value="">Please select</option>
           <option value="JSON">Export JSON</option>
@@ -160,6 +160,5 @@
         style="cursor: pointer"
       />
     </div>
-    <a href="settings.html" class="settingsButton"><img src="/assets/gear-solid.svg" alt="Settings" /></a>
   </body>
 </html>
