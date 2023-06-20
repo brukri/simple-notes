@@ -51,7 +51,7 @@ const controller = (() => {
     const existingNoteTemplate = document.getElementById(
       "existing-notes-list-template"
     );
-    const newNote = existingNoteTemplate.cloneNode(true);
+    const newNode = existingNoteTemplate.cloneNode(true);
     const elementId = `existing-note-list-${noteId}`;
     newNote.setAttribute("id", elementId);
     existingNotes.appendChild(newNote);
