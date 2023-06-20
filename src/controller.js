@@ -231,12 +231,12 @@ const controller = (() => {
   }
 
   function exportCSV() {
-    var notes = JSON.parse(localStorage.getItem(SIMPLE_NOTES_STORAGE_KEY));
-    var fields = Object.keys(notes[0]);
-    var replacer = function (key, value) {
+    const notes = JSON.parse(localStorage.getItem(SIMPLE_NOTES_STORAGE_KEY));
+    const fields = Object.keys(notes[0]);
+    let replacer = function (key, value) {
       return value === null ? "" : value;
     };
-    var csv = notes.map(function (note) {
+    let csv = notes.map(function (note) {
       return fields
       .map(function (fieldName) {
         return JSON.stringify(note[fieldName], replacer).replaceAll('"', "");
@@ -270,16 +270,16 @@ const controller = (() => {
   
   
   function importFile() {
-    var fileInput = document.querySelector("input[type=file]");
-    var file = fileInput.files[0];
-    var reader = new FileReader();
+    const fileInput = document.querySelector("input[type=file]");
+    const file = fileInput.files[0];
+    let reader = new FileReader();
 
     reader.onload = function (event) {
-      var dataURL = event.target.result;
+      const dataURL = event.target.result;
     };
 
     reader.readAsDataURL(file);
-    var name = file.name;
+    const name = file.name;
     console.log(name);
     if (name.search(/\.csv+$/i) !== -1) {
       console.log("csvFile");
