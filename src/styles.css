@@ -1,4 +1,4 @@
-html{
+html {
   scroll-behavior: smooth;
 }
 
@@ -8,8 +8,8 @@ html{
   --tertiary-color: #c1c1c1;
   --quinary-color: #ffffff;
   --background-color: #ffffff;
-  --shadow-color: rgba(3,3,3,0.1);
-  --input-shadow-color: rgba(3,3,3,0.1);
+  --shadow-color: rgba(3, 3, 3, 0.1);
+  --input-shadow-color: rgba(3, 3, 3, 0.1);
 }
 
 .dark-mode {
@@ -18,11 +18,11 @@ html{
   --tertiary-color: #c1c1c1;
   --quinary-color: #030303;
   --background-color: #030303;
-  --shadow-color: rgba(105,105,105,0.6);
-  --input-shadow-color: rgba(3,3,3,0.1);
+  --shadow-color: rgba(105, 105, 105, 0.6);
+  --input-shadow-color: rgba(3, 3, 3, 0.1);
 }
 
-.image-dark-mode{
+.image-dark-mode {
   filter: invert(100%);
 }
 
@@ -38,13 +38,13 @@ html{
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--background-color); 
+  background: transparent;
 }
 
 ::-webkit-scrollbar-corner {
-  background: var(--background-color);
+  background: transparent;
 }
-.dark-mode-button{
+.dark-mode-button {
   position: fixed;
   right: 20px;
   bottom: 20px;
@@ -123,12 +123,14 @@ textarea::placeholder {
   outline: 2px solid var(--tertiary-color);
 }
 
-#add-note-img, #edit-note-img{
+#add-note-img,
+#edit-note-img {
   height: 30px;
   width: 30px;
 }
 
-hr {
+hr.divider {
+  width: 380px;
   height: 2px;
   background-color: var(--tertiary-color);
   border-width: 0;
@@ -174,6 +176,8 @@ hr {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  overflow-y: scroll;
+  max-height: 100%;
 }
 
 #existing-note-title {
@@ -191,7 +195,7 @@ hr {
 }
 
 .edit-delete-wrapper {
-  width: 120px;
+  width: 130px;
 }
 
 #existing-note-template {
@@ -226,7 +230,7 @@ hr {
   color: var(--tertiary-color);
 }
 
-.wrapper-text-edit-delete button:hover{
+.wrapper-text-edit-delete button:hover {
   text-decoration: underline;
 }
 
@@ -274,7 +278,8 @@ aside img {
   padding: 0px 10px 0px 10px;
 }
 
-.import, .export {
+.import,
+.export {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -331,20 +336,20 @@ aside img {
   padding-bottom: 10px;
 }
 
-#existing-notes-list-template{
+#existing-notes-list-template {
   display: none;
 }
 
-.highlight{
+.highlight {
   background-color: yellow;
 }
 
-a{
+a {
   margin: 0;
   padding: 0;
 }
 
-#delete-all-notes-button{
+#delete-all-notes-button {
   position: fixed;
   left: 20px;
   bottom: 20px;
@@ -353,7 +358,7 @@ a{
   cursor: pointer;
 }
 
-.delete-confirm{
+.delete-confirm {
   position: absolute;
   top: 0;
   left: 0;
@@ -364,11 +369,11 @@ a{
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 50px; 
+  font-size: 50px;
   text-decoration: underline;
 }
 
-.delete-confirm>img{
+.delete-confirm > img {
   width: 30px;
   height: 30px;
   position: absolute;
@@ -376,6 +381,13 @@ a{
   right: 10px;
 }
 
-.hidden{
+.hidden {
   display: none;
+}
+
+option,
+select {
+  border-color: var(--tertiary-color);
+  color: var(--primary-color);
+  border-radius: 5px;
 }
